@@ -8,8 +8,8 @@ pipeline {
     }
    stage('TF plan') {
       steps {
-            sh '''   
-           azureCLI commands: [[exportVariablesString: '', script: 'az login']], principalCredentialId: 'jenkinsuser'
+          azureCLI commands: [[exportVariablesString: '', script: 'az login']], principalCredentialId: 'jenkinsuser'
+            sh '''
            sudo terraform init
            sudo terraform plan -out myplan
         '''
