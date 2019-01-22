@@ -8,10 +8,10 @@ pipeline {
     }
    stage('TF plan') {
       steps {
-        container('terraform') {
-           sh 'terraform init'
-           sh 'terraform plan -out myplan'
-        }
+            sh '''        
+           terraform init
+           terraform plan -out myplan
+        '''
       }
     }
     stage('Approval') {
@@ -25,9 +25,11 @@ pipeline {
     }
     stage('Apply') {
       steps {
-        container('terraform') {
-          sh 'terraform apply -input=false myplan'
-        }
+        
+          sh '''
+          terraform apply -input=false myplan
+          '''
+        
       }
     }
   }  
