@@ -8,29 +8,24 @@ pipeline {
     }
     stage('TF plan') {
       steps {
-        sh ''' 
-        terraform init\
-        terraform plan -out myplan
-        
-        '''
+        container('terraform') {
+           sh 'terraform init'
+           sh 'terraform plan -out myplan'
       }
     }
     stage('Approval') {
       steps {
-        sh '''
-        def userInput = input(id: \'confirm\', message:
-           \'Apply Terraform?\', parameters: 
-            [ [$class: \'BooleanParameterDefinition\', defaultValue: 
-            false, description: \'Apply terraform\', name: \'confirm\']
-            ])
-            '''
+        script {
+          def userInput = input(id: 'confirm', message: 'Apply Terraform?',
+                                parameters: [ [$class: 'BooleanParameterDefinition',
+                                defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
       }
     }
     stage('Apply') {
       steps {
-        sh '''
-        terraform apply -input=false myplan
-        '''
+        container('terraform') {
+          sh terraform apply -input=false myplan'
+        }
       }
     }
   }
