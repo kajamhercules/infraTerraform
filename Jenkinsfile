@@ -10,7 +10,7 @@ pipeline {
       steps {
         //azureCLI commands: [[exportVariablesString: '', script: 'az login']], principalCredentialId: 'infra'
             sh '''
-           az login --service-principal -u infra -p infra --tenant bd8ab44a-b4f0-4055-b414-10d1a87c1666
+           sudo az login --service-principal -u infra -p infra --tenant bd8ab44a-b4f0-4055-b414-10d1a87c1666
            sudo terraform init
            sudo terraform plan -out myplan
         '''
