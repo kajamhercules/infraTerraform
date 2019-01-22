@@ -10,7 +10,7 @@ pipeline {
       steps {
             sh '''        
            terraform init
-           terraform plan -out myplan
+           sudo terraform plan -out myplan
         '''
       }
     }
@@ -27,7 +27,7 @@ pipeline {
       steps {
         
           sh '''
-          terraform apply -input=false myplan
+          sudo terraform apply -input=false myplan
           '''
         
       }
