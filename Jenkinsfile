@@ -12,7 +12,7 @@ pipeline {
             sh '''
            az login --service-principal -u a14f94ef-6c2a-4a1f-a7cc-ea23ad338c87 -p infra --tenant bd8ab44a-b4f0-4055-b414-10d1a87c1666
            sudo terraform init
-           sudo terraform plan -out
+           sudo terraform plan
         '''
       }
     }
