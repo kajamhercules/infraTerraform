@@ -8,8 +8,9 @@ pipeline {
     }
    stage('TF plan') {
       steps {
-            sh '''        
-           terraform init
+            sh '''   
+           pwd
+           sudo terraform init
            sudo terraform plan -out myplan
         '''
       }
