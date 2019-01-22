@@ -6,11 +6,12 @@ pipeline {
         checkout scm
       }
     }
-    stage('TF plan') {
+   stage('TF plan') {
       steps {
         container('terraform') {
            sh 'terraform init'
            sh 'terraform plan -out myplan'
+        }
       }
     }
     stage('Approval') {
@@ -18,7 +19,8 @@ pipeline {
         script {
           def userInput = input(id: 'confirm', message: 'Apply Terraform?',
                                 parameters: [ [$class: 'BooleanParameterDefinition',
-                                defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+                               defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+        }   
       }
     }
     stage('Apply') {
@@ -28,5 +30,5 @@ pipeline {
         }
       }
     }
-  }
+  }  
 }
