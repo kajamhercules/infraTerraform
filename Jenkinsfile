@@ -3,9 +3,6 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh'''
-        sudo git clean -dfx
-        '''
         checkout scm
       }
     }
