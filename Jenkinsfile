@@ -29,7 +29,7 @@ pipeline {
       steps {
         
           sh '''
-          sudo terraform destroy
+          sudo terraform destroy -auto-approve
           sudo terraform apply -input=false myplan
           '''
         
