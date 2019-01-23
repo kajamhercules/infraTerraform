@@ -38,7 +38,7 @@ resource "azurerm_app_service_plan" "default" {
 }
 
 resource "azurerm_app_service" "default" {
-  name                = "tfex-appservice-beta"
+  name                = "tfex-appservice-beta_${random_string.name.result}"
   location            = "${azurerm_resource_group.default.location}"
   resource_group_name = "${azurerm_resource_group.default.name}"
   app_service_plan_id = "${azurerm_app_service_plan.default.id}"
