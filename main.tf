@@ -11,7 +11,7 @@ provider "azurerm" {
   subscription_id             = "66391ae6-a4d7-4401-a643-245509f5c337"
   client_id                   = "fa90cebf-8a20-4372-bfe5-36e78059beeb"
   client_certificate_path     = "service-principal.pfx"
-  client_certificate_password = "Qwerty123456"
+  client_certificate_password = "Qwerty12345"
   tenant_id                   = "bd8ab44a-b4f0-4055-b414-10d1a87c1666"
 }
 
