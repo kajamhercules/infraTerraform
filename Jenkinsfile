@@ -3,28 +3,39 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh 'checkout scm'
+        sh'''
+        git clean -dfx
+        '''
+        checkout scm
       }
     }
-    stage('TF plan') {
+   stage('TF plan') {
       steps {
-        sh '''sh \'terraform init\'
-sh \'terraform plan -out myplan'''
+        //azureCLI commands: [[exportVariablesString: '', script: 'az login']], principalCredentialId: 'infra'
+            sh '''
+         # az login --service-principal -u a14f94ef-6c2a-4a1f-a7cc-ea23ad338c87 -p infra --tenant bd8ab44a-b4f0-4055-b414-10d1a87c1666
+           sudo terraform init
+           sudo terraform plan -out myplan
+        '''
       }
     }
     stage('Approval') {
       steps {
-        sh '''def userInput = input(id: \'confirm\', message:
- \'Apply Terraform?\', parameters: 
-[ [$class: \'BooleanParameterDefinition\', defaultValue: 
-false, description: \'Apply terraform\', name: \'confirm\']
- ])'''
+        script {
+          def userInput = input(id: 'confirm', message: 'Apply Terraform?',
+                                parameters: [ [$class: 'BooleanParameterDefinition',
+                               defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+        }   
       }
     }
     stage('Apply') {
       steps {
-        sh 'sh terraform apply -input=false myplan'
+        
+          sh '''
+          sudo terraform apply -input=false myplan
+          '''
+        
       }
     }
-  }
+  }  
 }
