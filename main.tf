@@ -4,7 +4,7 @@ provider "azurerm" {
 
   subscription_id             = "66391ae6-a4d7-4401-a643-245509f5c337"
   client_id                   = "a14f94ef-6c2a-4a1f-a7cc-ea23ad338c87"
-  client_certificate_password = "infra"
+  client_certificate_password = "1KFvffN2jZWb6nxmCvpBwOI0s16Owgr83EYZ4jVmGfI="
   tenant_id                   = "bd8ab44a-b4f0-4055-b414-10d1a87c1666"
 }
 
