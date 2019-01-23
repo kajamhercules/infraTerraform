@@ -4,7 +4,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh'''
-        git clean -dfx
+        sudo git clean -dfx
         '''
         checkout scm
       }
