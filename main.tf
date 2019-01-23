@@ -22,7 +22,8 @@ resource "azurerm_resource_group" "default" {
 
 resource "random_string" "name" {
   length = 5
-  special = true
+  special = false
+  number = false
   override_special = "/@\" "
 }
 
