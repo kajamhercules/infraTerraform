@@ -28,7 +28,8 @@ resource "random_string" "name" {
 }
 
 resource "azurerm_app_service_plan" "default" {
-  name                = "tfex-appservice-beta-plan-${random_string.name.result}"
+  #name                = "tfex-appservice-beta-plan-${random_string.name.result}"
+  name                = "tfex-appservice-beta-plan"
   location            = "${azurerm_resource_group.default.location}"
   resource_group_name = "${azurerm_resource_group.default.name}"
 
@@ -39,7 +40,8 @@ resource "azurerm_app_service_plan" "default" {
 }
 
 resource "azurerm_app_service" "default" {
-  name                = "tfex-appservice-beta-${random_string.name.result}"
+  #name                = "tfex-appservice-beta-${random_string.name.result}"
+  name                = "tfex-appservice-beta"
   location            = "${azurerm_resource_group.default.location}"
   resource_group_name = "${azurerm_resource_group.default.name}"
   app_service_plan_id = "${azurerm_app_service_plan.default.id}"
