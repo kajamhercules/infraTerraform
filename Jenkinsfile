@@ -25,15 +25,6 @@ pipeline {
         }   
       }
     }
-    stage('Destroy') {
-      steps {
-        
-          sh '''
-          sudo terraform destroy -auto-approve
-          '''
-        
-      }
-    }
     
     stage('Apply') {
       steps {
