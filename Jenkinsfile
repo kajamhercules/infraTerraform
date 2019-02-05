@@ -2,6 +2,9 @@ pipeline {
   agent any
   stages {
     stage('Checkout') {
+      environment {
+        env = 'prod'
+      }
       parallel {
         stage('Checkout') {
           steps {
